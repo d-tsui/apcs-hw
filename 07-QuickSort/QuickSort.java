@@ -1,54 +1,54 @@
 //NOT YET COMPLETE
 import java.util.*;
 public class QuickSort{
-    public int[] quicksort(int[] L) {
+    public Integer[] quicksort(Integer[] L) {
 		if(L.length <= 1) return L;
 		
-		int pivot = (int)(Math.random()*(L.length - 1));
-		System.out.print("Pivot: " + pivot);
+		Random r = new Random();
+		int pivot = r.nextInt(L.length);
+		//System.out.println("Pivot: " + pivot);
 		
 		ArrayList<Integer> a = new ArrayList<Integer>();
 		ArrayList<Integer> b = new ArrayList<Integer>();
-		
+		ArrayList<Integer> plist = new ArrayList<Integer>();
 		
 		for (int i = 0; i < L.length; i++){
-			if (L[i] > L[pivot]){
+			if (L[i] < L[pivot]){
 			    a.add(L[i]);
-			} else {
+			} else if (L[i] > L[pivot]) {
 			    b.add(L[i]);
+			} else {
+				plist.add(L[i]);
 			}
 		}
 		
-		int[] a1 = new int[a.size()];
-		for (int x = 0; x < a.size(); x++){
-			a1[x] = a.get(x);
-		}
-		int[] b1 = new int[b.size()];
-		for (int x = 0; x < b.size(); x++){
-			b1[x] = b.get(x);
-		}
+		Integer[] a1 = a.toArray(new Integer[]{});
+		Integer[] b1 = b.toArray(new Integer[]{});
 		
-		quicksort(a1);
-		quicksort(b1);
+		a1 = quicksort(a1);
+		b1 = quicksort(b1);
 		
 		int p = L[pivot];
 		
 		int x = 0;
-		for (; x < a.size(); x++){
-			L[x] = a.get(x);
+		for (Integer j:a1){
+			L[x] = j;
+			x++;
 		}
-		L[x] = p;
-		x++;
-		for (; x < L.length; x++){
-			L[x] = b.get(x-a.size()-1);
+		for (Integer j:plist){
+			L[x] = j;
+			x++;
 		}
-		
+		for (Integer j:b1){
+			L[x] = j;
+			x++;
+		}
 		return L;
     	
     }
     
     public static void main(String[] args){
-		int[] a = {5,6,1,2,8,7,4,9,3,10};
+		Integer[] a = {5,6,1,2,8,7,4,9,3,10};
 		for(int x = 0; x < 10; x++ ){
 			System.out.print(a[x] + ", ");
 		}
