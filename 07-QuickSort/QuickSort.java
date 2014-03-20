@@ -6,7 +6,7 @@ public class QuickSort{
 		
 		Random r = new Random();
 		int pivot = r.nextInt(L.length);
-		//System.out.println("Pivot: " + pivot);
+		//System.out.println("Pivot: " + L[pivot]);
 		
 		ArrayList<Integer> a = new ArrayList<Integer>();
 		ArrayList<Integer> b = new ArrayList<Integer>();
@@ -48,17 +48,29 @@ public class QuickSort{
     }
     
     public static void main(String[] args){
-		Integer[] a = {5,6,1,2,8,7,4,9,3,10};
-		for(int x = 0; x < 10; x++ ){
-			System.out.print(a[x] + ", ");
+		Integer[] a = new Integer[100000];
+		Random rand = new Random();
+		int i = 0;
+		for (Integer x : a){
+			a[i] = rand.nextInt(1000);
+			i++;
 		}
-		System.out.print("\n");
+		
+		/*
+		for(Integer x : a){
+			System.out.print(x + ", ");
+		}
+		*/ 
+		System.out.println("\n");
 		QuickSort q = new QuickSort();
 		
 		q.quicksort(a);
-		for(int x = 0; x < 10; x++ ){
+		/*
+		for(int x = 0; x < a.length; x++ ){
 			System.out.print(a[x] + ", ");
 		}
+		*/
+		
 		System.out.print("\n");
     }
 }
