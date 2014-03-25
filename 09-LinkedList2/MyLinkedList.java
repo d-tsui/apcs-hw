@@ -7,8 +7,11 @@ public class MyLinkedList {
 
     public void add(String s){
 	Node tmp = new Node(s);
-	tmp.setNext(head);
-	head = tmp;
+	Node current = head;
+	while(current.getNext() != null){
+		current = current.getNext();
+	}
+	current.setNext(tmp);
     }
 
     public void add (int i, String s){
