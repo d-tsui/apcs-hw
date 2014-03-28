@@ -24,14 +24,34 @@ public class DoubleLL<E> {
 	Node <E> tmp;
 	if (current == null) {
 	    current = n;
+	    current.next = current;
+	    current.prev = current;
 	} else {
-	    tmp = current.prev;
 	    n.next = current;
+	    if(current.prev != null){
+		tmp = current.prev;
+		n.setPrev(tmp);
+		tmp.setNext(n);
+	    } 
 	    current.prev = n;
-	    n.setPrev(tmp);
-	    tmp.setNext(n);
 	    current = n;
 	}
+    }
+    public E delete (){
+	
+    }
+    public int find (E d){
+	Node<E> tmp = current;
+	Node<E> first = current;
+	int x = 0;
+	while (tmp.getData() != d){
+	    
+	    tmp = tmp.getNext();
+	    if (tmp.getData() == first.getData())
+		return -1;
+	    x++;
+	}
+	return x;
     }
     public E getCurrent(){
 	return current.getData();
@@ -45,17 +65,19 @@ public class DoubleLL<E> {
 	    current = current.getPrev();
     }
     public String toString(){
+	Node<E> first = current;
 	if (current == null)
 	    return "";
-	while (current.getPrev() != null)
-	    current = current.getPrev();
-
-	Node<E> tmp = current;
+	//while (current.getPrev() != first)
+	//    current = current.getPrev();
+	Node<E> tmp = current.getNext();
 	String s = "";
-	while (tmp != null) {
+	while (tmp != first) {
 	    s = s + tmp.getData() + "";
 	    tmp = tmp.getNext();
 	}
+	s = s + first.getData() + " ";
+	current = first;
 	return s;
     }
 
@@ -70,9 +92,11 @@ public class DoubleLL<E> {
 	System.out.println(L);
 	System.out.println(L.getCurrent());
 	L.forward();
-   
+	System.out.println(L.getCurrent());
 	L.insert("inserted");
 	System.out.println(L);
+	System.out.println(L.getCurrent());
+	System.out.println(L.find("three"));
     }
 }
 	
