@@ -1,3 +1,5 @@
+// Derek, Dmitri
+
 public class DoubleLL<E> {
     private class Node<E> {
 	E data;
@@ -38,8 +40,13 @@ public class DoubleLL<E> {
 	}
     }
     public E delete (){
-	
+		Node<E> out = current;
+		current.prev.setNext(current.next);
+		out.next.setPrev(out.prev);
+		current = out.next;
+		return out.getData();
     }
+    
     public int find (E d){
 	Node<E> tmp = current;
 	Node<E> first = current;
@@ -97,6 +104,8 @@ public class DoubleLL<E> {
 	System.out.println(L);
 	System.out.println(L.getCurrent());
 	System.out.println(L.find("three"));
+	System.out.println(L.delete());
+	System.out.println(L);
     }
 }
 	
