@@ -18,6 +18,7 @@ public class MyLinkedList<E> implements Iterable {
 	while(current.getNext() != null){
 		current = current.getNext();
 	}
+	
 	current.setNext(tmp);
 	tail = tmp;
     }
