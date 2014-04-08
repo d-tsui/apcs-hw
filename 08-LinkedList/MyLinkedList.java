@@ -17,8 +17,8 @@ public class MyLinkedList {
 	for (;i > 1; i--){
 	    old = old.getNext();
 	}
-    tmp.setNext(old.getNext());
-    old.setNext(tmp);
+	tmp.setNext(old.getNext());
+	old.setNext(tmp);
     }
 
     public String get(int i){
@@ -34,57 +34,57 @@ public class MyLinkedList {
 	Node old = head;
 	String out;
 	if (i == 0) {
-    	out = head.getData();
-    	old = head.getNext();
-    	head = tmp;
-    	head.setNext(old);
-    	return out;
-    }
+	    out = head.getData();
+	    old = head.getNext();
+	    head = tmp;
+	    head.setNext(old);
+	    return out;
+	}
 	for (;i > 1; i--){
 	    old = old.getNext();
 	}
 	out = old.getData();
-    tmp.setNext(old.getNext());
-    old.setNext(tmp);
-    return out;
+	tmp.setNext(old.getNext());
+	old.setNext(tmp);
+	return out;
     }
     
     public String remove (int i) {
-    String out;
-    if (i == 0) {
-    	out = head.getData();
-    	head = head.getNext();
-    	return out;
-    }
+	String out;
+	if (i == 0) {
+	    out = head.getData();
+	    head = head.getNext();
+	    return out;
+	}
 	Node old = head;
 	for (;i > 1; i--){
 	    old = old.getNext();
 	}
 	out = old.getData();
-    old.setNext(old.getNext().getNext());
-    return out;    
-	}
+	old.setNext(old.getNext().getNext());
+	return out;    
+    }
 
-	public int find(String s){
-		Node c = head;
-		int x = 0;
-		while (c.getNext() != null){
-			if (c.getData().equals(s)) return x;
-			c = c.getNext();
-			x++;
-		}
-		return -1;
+    public int find(String s){
+	Node c = head;
+	int x = 0;
+	while (c.getNext() != null){
+	    if (c.getData().equals(s)) return x;
+	    c = c.getNext();
+	    x++;
 	}
+	return -1;
+    }
 
-	public int length() {
-				Node c = head;
-		int x = 0;
-		while (c.getNext() != null){
-			c = c.getNext();
-			x++;
-		}
-		return x + 1;
+    public int length() {
+	Node c = head;
+	int x = 0;
+	while (c.getNext() != null){
+	    c = c.getNext();
+	    x++;
 	}
+	return x + 1;
+    }
 	
     public String toString(){
 	String s;

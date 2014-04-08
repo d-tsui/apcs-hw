@@ -1,6 +1,11 @@
-public class MyLinkedList {
+import java.util.*;
+public class MyLinkedList<E> implements Iterable {
     private Node head;
     private Node tail;
+
+    public Iterator<E> iterator(){
+	Iterator<E> it = new MyLLIterator<E>(head);
+    }
 
     public MyLinkedList(){
 	head = new Node("0");
