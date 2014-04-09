@@ -1,6 +1,6 @@
 public class MyStack {
 
-	private String[] s;
+    private String[] s;
     private int size;
 
     public MyStack(){
@@ -24,6 +24,14 @@ public class MyStack {
     public void push(int i){
     	String s = "" + i;
 		push(s);	
+    }
+
+    public void push(double i){
+	int i2 = (int) i;
+	String s;
+	if (i == i2) s = "" + i2;
+	else s = "" + i;
+	push(s);	
     }
     
     public String pop() {
