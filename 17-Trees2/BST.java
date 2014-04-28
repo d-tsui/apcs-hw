@@ -53,11 +53,17 @@ public class BST {
 	}
 	return c;
     }
-
+    // node is the root
+    // node to delete is a leaf: set parents left or right pointer (as appropriate) to null
+    //node his one child
+    // note has 2 children
+    /*
+      replace the deleted value w/ the largest from the left subtree
+      (or smallest from right by going to the left function as far
+    */
     public Node delete (int x){
 
     }
-
     public String toString(){
 	return "" + root;
     }
