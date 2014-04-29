@@ -38,6 +38,18 @@ public class BST {
 	return current;
     }
 
+    public Node parentSearch (int x) {
+	Node current = root;
+	Node parent = current;
+	while (current != null && current.getData() != x) {
+	    parent = current;
+	    if (x < current.getData()) current = current.getLeft();
+	    else current = current.getRight();
+	}
+	//System.out.println(" returned Node " + current.getData());
+	return parent;
+    }
+
     public Node search2(int x){
 	return search2(root, x);
     }
@@ -53,17 +65,60 @@ public class BST {
 	}
 	return c;
     }
-    // node is the root
-    // node to delete is a leaf: set parents left or right pointer (as appropriate) to null
-    //node his one child
-    // note has 2 children
-    /*
-      replace the deleted value w/ the largest from the left subtree
-      (or smallest from right by going to the left function as far
-    */
-    public Node delete (int x){
-
+    
+    public Boolean isLeaf(Node n){
+    	return n.getLeft() == null && n.getRight() == null;
     }
+    
+    public Boolean hasOneChild (Node n){
+    	return (n.getLeft() == null || n.getRight() == null) && !isLeaf(n);
+    }
+    
+    public Node findMaxLeftHalf (Node n){
+    	Node max = n.getLeft();
+    	while (max.getRight() != null){
+    		max = max.getRight();
+    	}
+    	return max;
+    }
+    
+    public Node delete (int x){
+    	Node n = search(x);
+    	if (n == root) {
+    		if(isLeaf(n)) {
+    			root = null;
+    			return n;
+    		} else {
+    			Node max = findMaxLeftHalf(n);
+				Node pmax = parentSearch(max.getData());
+				pmax.setRight(null);
+				max.setLeft(root.getLeft());
+				max.setRight(root.getRight());
+				root = max;
+				return n;	
+			}
+    	}
+    	Node p = parentSearch(x);
+		if (isLeaf(n)){
+			if (x < p.getData()) p.setLeft(null);
+			else p.setRight(null);
+			return n;
+		} else if (hasOneChild(n)){
+			Node temp = n.getLeft();
+			if (temp == null) temp = n.getRight();
+			if (x < p.getData()) p.setLeft(temp);
+			else p.setRight(temp);
+			return n;
+		} else { //hasTwoChildren // CODE IS FAULTY
+			Node max = findMaxLeftHalf(n);
+			Node pmax = parentSearch(max.getData());
+			pmax.setRight(max.getRight());
+			if (x < p.getData()) p.setLeft(max);
+			else p.setRight(max);
+			return n;			
+		}
+    }
+    
     public String toString(){
 	return "" + root;
     }
