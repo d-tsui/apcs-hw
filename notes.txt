@@ -1,0 +1,14 @@
+closed hashing -> all in the table
+
+insert: worst case O(n) n = number of elements in the table
+	best case O(1)
+	expeted run time O(1) if the table is sparse, h(x) distributes x -> h(x) all over the table
+
+retrieval: same as insert
+traversal: O(m) m = size of hash table
+
+open hashing -> each slot in the table refers to a linked list of items that hash to that slot
+ex: h(x)  = x.lower().charAt(0)
+
+insert: worst case O(1)
+retrieval: O(m) number of nodes that hash to the slot
